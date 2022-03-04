@@ -1,2 +1,4 @@
 #!/bin/bash
 mkdir -p welcome/to/school
+#!/bin/bash
+ls -pamv
