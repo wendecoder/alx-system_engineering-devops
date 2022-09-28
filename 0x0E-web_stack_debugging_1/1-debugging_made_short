@@ -2,8 +2,5 @@
 #Replacing the port 8080 by 80 using sed
 
 sed -i 's/8080/80/' /etc/nginx/sites-enabled/default
-if [ "$(pgrep -c nginx)" -le 0 ]; then
-	service nginx start
-else
-	service nginx restart
-fi
+service nginx restart
+echo "" /run/nginx.pid
