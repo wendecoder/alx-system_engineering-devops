@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Replacing the port 8080 by 80 using sed in order to
+#enable nginx to run on port 80
+
+sed -i 's/8080/80/' /etc/nginx/sites-enabled/default
+
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+	service nginx start
+else
+	service nginx restart
+fi
