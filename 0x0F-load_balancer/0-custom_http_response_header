@@ -4,6 +4,7 @@
 sudo apt-get update
 sudo apt-get -y install nginx
 ufw allow 'Nginx HTTP'
+sudo mkdir -p /var/www/html /var/www/error
 chmod -R 755 /var/www
 echo 'Hello World' > /var/www/html/index.html
 
@@ -31,9 +32,4 @@ new_config=\
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 echo "$new_config" > /etc/nginx/sites-available/default
 
-if [ "$(pgrep -c nginx)" -le 0 ];
-then
-    service nginx start
-else
-    service nginx restart
-fi;
+service nginx start
