@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# prints the sub-domains with their record type and
+# the ip address to which they point
+
+domainname="$1"
+subdomain="$2"
+subs=( "www" "lb-01" "web-01" "web-02" )
+
+func () {
+	#local variable
+	sub="$2"
+	result="$(dig "$sub.$domainname" | grep -A1 'ANSWER SECTION:' | awk 'NR==2')"
+	IP=$(echo "$result" | awk '{print $5}')
+	record=$(echo "$result" | awk '{print $4}')
+
+	echo "The subdomain $sub is a $record record and points to $IP"
+}
+if [ $# -eq 1 ]; then
+	for sub in "${subs[@]}"; do
+		func "$domainname" "$sub"
+	done
+elif [ $# -eq 2 ]; then
+	func "$domainname" "$subdomain"
+fi
