@@ -5,11 +5,12 @@ import sys
 import csv
 
 if __name__ == "__main__":
+    id = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
-    username = requests.get(url + "users/{}".format(sys.argv[1])).json()
-    with open("{}.csv".format(sys.argv[1]), "w", newline="") as filecsv:
-        write = csv.writer(filecsv, quoting=csv.QUOTE_ALL)
-        [write.writerow(
-            [sys.argv[1], username.get("username"), t.get("completed"), t.get("title")]
+    user = requests.get(url + "todos", params={"userId": id}).json()
+    users = requests.get(url + "users/{}".format(id)).json()
+    with open("{}.csv".format(id), "w", newline="") as filecsv:
+        csv = csv.writer(filecsv, quoting=csv.QUOTE_ALL)
+        [csv.writerow(
+            [id, users.get("username"), t.get("completed"), t.get("title")]
          ) for t in user]
