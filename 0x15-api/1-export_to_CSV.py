@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Returns copleted todos for a given employee ID."""
+import csv
 import requests
 import sys
-import csv
+
 
 if __name__ == "__main__":
     id = sys.argv[1]
