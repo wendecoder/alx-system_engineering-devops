@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Returns copleted todos for a given employee ID."""
+import json
 import requests
 import sys
-import json
+
 
 if __name__ == "__main__":
     id = sys.argv[1]
