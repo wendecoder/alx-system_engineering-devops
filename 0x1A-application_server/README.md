@@ -1,5 +1,5 @@
 # **0x1A. Application server**
-[app_server](app_server.jpg)
+![app_server](app_server.jpg)
 
 ---
 # **Background Context**
